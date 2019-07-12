@@ -6,9 +6,10 @@ const cors = require('cors');
 const MOVIEDEX = require('./MOVIEDEX.json');
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common';
 
-app.use(morgan('dev'));
+app.use(morgan(morganSetting));
 app.use(helmet());
 app.use(cors());
 
